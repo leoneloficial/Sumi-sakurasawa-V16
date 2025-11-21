@@ -17,23 +17,17 @@ resolve()
 export async function handler(chatUpdate) {
 this.msgqueque = this.msgqueque || []
 this.uptime = this.uptime || Date.now()
-if (!chatUpdate) {
-return
-}
+if (!chatUpdate) return
 this.pushMessage(chatUpdate.messages).catch(console.error)
 let m = chatUpdate.messages[chatUpdate.messages.length - 1]
-if (!m) {
-return
-}
+if (!m) return
 if (global.db.data == null) await global.loadDatabase()
 try {
 m = smsg(this, m) || m
-if (!m) {
-return
-}
+if (!m) return
 m.exp = 0
 try {
-const user = global.db.data.users[m.sender]
+let user = global.db.data.users[m.sender]
 if (typeof user !== "object") global.db.data.users[m.sender] = {}
 if (user) {
 if (!("name" in user)) user.name = m.name
@@ -76,7 +70,7 @@ afk: -1,
 afkReason: "",
 warn: 0
 }
-const chat = global.db.data.chats[m.chat]
+let chat = global.db.data.chats[m.chat]
 if (typeof chat !== "object") global.db.data.chats[m.chat] = {}
 if (chat) {
 if (!("isBanned" in chat)) chat.isBanned = false
@@ -105,7 +99,7 @@ nsfw: false,
 economy: true,
 gacha: true
 }
-const settings = global.db.data.settings[this.user.jid]
+let settings = global.db.data.settings[this.user.jid]
 if (typeof settings !== "object") global.db.data.settings[this.user.jid] = {}
 if (settings) {
 if (!("self" in settings)) settings.self = false
@@ -206,9 +200,9 @@ __filename,
 user,
 chat,
 settings
-})) {
+}))
 continue
-}}
+}
 if (typeof plugin !== "function") {
 continue
 }
@@ -284,15 +278,13 @@ continue
 if (plugin.group && !m.isGroup) {
 fail("group", m, this)
 continue
-} else if (plugin.botAdmin && !isBotAdmin) {
+} 
+if (plugin.botAdmin && !isBotAdmin) {
 fail("botAdmin", m, this)
 continue
-} else if (plugin.admin && !isAdmin) {
+} 
+if (plugin.admin && !isAdmin) {
 fail("admin", m, this)
-continue
-}
-if (plugin.private && m.isGroup) {
-fail("private", m, this)
 continue
 }
 m.isCommand = true
@@ -342,9 +334,9 @@ const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
 if (quequeIndex !== -1)
 this.msgqueque.splice(quequeIndex, 1)
 }
-let user, stats = global.db.data.stats
+let user = global.db.data.users[m.sender]
 if (m) {
-if (m.sender && (user = global.db.data.users[m.sender])) {
+if (m.sender && user) {
 user.exp += m.exp
 }}
 try {
@@ -356,15 +348,11 @@ console.log(m.message)
 
 global.dfail = (type, m, conn) => {
 const msg = {
-rowner: `『✦』El comando *${comando}* solo puede ser usado por los creadores del bot.`, 
-owner: `『✦』El comando *${comando}* solo puede ser usado por los desarrolladores del bot.`, 
-mods: `『✦』El comando *${comando}* solo puede ser usado por los moderadores del bot.`, 
-premium: `『✦』El comando *${comando}* solo puede ser usado por los usuarios premium.`, 
+rowner: `『✦』El comando *${comando}* solo puede ser usado por los creadores del bot.`,
+premium: `『✦』El comando *${comando}* solo puede ser usado por los usuarios premium.`,
 group: `『✦』El comando *${comando}* solo puede ser usado en grupos.`,
-private: `『✦』El comando *${comando}* solo puede ser usado al chat privado del bot.`,
-admin: `『✦』El comando *${comando}* solo puede ser usado por los administradores del grupo.`, 
-botAdmin: `『✦』Para ejecutar el comando *${comando}* debo ser administrador del grupo.`,
-restrict: `『✦』Esta caracteristica está desactivada.`
+admin: `『✦』El comando *${comando}* solo puede ser usado por los administradores del grupo.`,
+botAdmin: `『✦』Para ejecutar el comando *${comando}* debo ser administrador del grupo.`
 }[type]
 if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))
 }
