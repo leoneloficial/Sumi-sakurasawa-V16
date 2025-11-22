@@ -40,7 +40,7 @@ m.reply(`⚠︎ Se ha producido un problema.\n> El detalle del error se mostrar�
 }}
 
 handler.help = ['setwelcome', 'setbye', 'testwelcome', 'testbye']
-handler.tags = ['group']
+handler.tags = ['grupo']
 handler.command = ['setgp', 'setwelcome', 'setbye', 'testwelcome', 'testbye']
 handler.admin = true
 handler.group = true
