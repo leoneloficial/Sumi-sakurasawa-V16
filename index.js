@@ -46,6 +46,10 @@ colors: ['cyan', 'magenta', 'yellow']
 protoType()
 serialize()
 
+if (!existsSync("./tmp")) {
+  mkdirSync("./tmp");
+}
+
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
 return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString()
 }
