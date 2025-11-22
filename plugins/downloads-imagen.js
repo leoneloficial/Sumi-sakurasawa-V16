@@ -17,7 +17,7 @@ conn.reply(m.chat, `⚠︎ Se ha producido un problema.\n> Usa *${usedPrefix}rep
 }}
 
 handler.help = ['imagen']
-handler.tags = ['descargas']
+handler.tags = ['download']
 handler.command = ['imagen', 'image']
 
 export default handler
