@@ -66,7 +66,8 @@ let handler = async (m, { conn, usedPrefix }) => {
     await conn.sendMessage(
       m.chat,
       {
-        text: ``, 
+        text: `꒷︶꒷꒥꒷‧₊˚૮꒰˵•ᵜ•˵꒱ა‧₊˚꒷︶꒷꒥꒷
+`, 
         footer: txt, 
         contextInfo: {
           mentionedJid: [m.sender],
