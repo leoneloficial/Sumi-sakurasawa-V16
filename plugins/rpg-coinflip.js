@@ -20,7 +20,7 @@ return conn.reply(m.chat, mensaje, m)
 }
 
 handler.help = ['cf']
-handler.tags = ['economy']
+handler.tags = ['rpg']
 handler.command = ['cf', 'suerte', 'coinflip', 'flip']
 handler.group = true
 
