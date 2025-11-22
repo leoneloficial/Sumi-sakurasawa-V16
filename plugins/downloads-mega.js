@@ -40,7 +40,7 @@ return conn.reply(m.chat, `⚠︎ Se ha producido un problema.\n> Usa *${usedPre
 }}
 
 handler.help = ["mega"]
-handler.tags = ["descargas"]
+handler.tags = ["download"]
 handler.command = ["mega", "mg"]
 handler.group = true
 
