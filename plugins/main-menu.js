@@ -63,7 +63,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         const res = await fetch(bannerUrl)
         const buffer = await res.buffer()
         thumbnailBuffer = buffer
-        
+
         mediaMessage = await prepareWAMessageMedia({ image: buffer }, { upload: conn.waUploadToServer })
       } catch (e) {
         console.error(e)
@@ -90,8 +90,8 @@ let handler = async (m, { conn, usedPrefix }) => {
                   name: "cta_url",
                   buttonParamsJson: JSON.stringify({
                     display_text: "☆ Canal",
-                    url: "",
-                    merchant_url: ""
+                    url: "https://whatsapp.com/channel/0029VaJxgcB0bIdvuOWKTM1h",
+                    merchant_url: "https://whatsapp.com/channel/0029VaJxgcB0bIdvuOWKTM1h"
                   })
                 }
               ],
@@ -99,6 +99,8 @@ let handler = async (m, { conn, usedPrefix }) => {
             },
             contextInfo: {
               mentionedJid: [m.sender],
+              isForwarded: true, 
+              forwardingScore: 9999999,
               externalAdReply: {
                 title: "⋆˚❏ 𝖬𝖾𝗇𝗎 𝖽𝖾 𝖼𝗈𝗆𝖺𝗇𝖽𝗈𝗌",
                 body: "Invitación al grupo oficial",
