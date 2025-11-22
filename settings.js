@@ -3,19 +3,11 @@ import chalk from "chalk"
 import { fileURLToPath } from "url"
 import fs from "fs"
 
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
-
-//BETA: Si quiere evitar escribir el número que será bot en la consola, agregué desde aquí entonces:
-//Sólo aplica para opción 2 (ser bot con código de texto de 8 digitos)
-global.botNumber = "" //Ejemplo: 573218138672
-
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+global.botNumber = "" 
 
 global.owner = ["50493732693", "584242773183", "51921826291"]
 global.suittag = [""] 
 global.prems = []
-
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.libreria = "Baileys Multi Device"
 global.vs = "^1.8.2|Latest"
@@ -23,19 +15,15 @@ global.sessions = "Sessions/Principal"
 global.jadi = "Sessions/SubBot"
 global.yukiJadibts = true
 
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
-
-global.botname = "ᥡᥙkі sᥙ᥆ᥙ"
-global.textbot = "ᥡᥙkі, mᥲძᥱ ᥕі𝗍һ ᑲᥡ ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ"
-global.dev = "© ⍴᥆ᥕᥱrᥱძ ᑲᥡ ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"
-global.author = "© mᥲძᥱ ᥕі𝗍һ ᑲᥡ ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"
-global.etiqueta = "ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"
-global.currency = "¥enes"
+global.botname = 'Zᴇʀᴏ 𝐓𝐰𝐨 ✿'
+global.textbot = 'Zᴇʀᴏ 𝐓𝐰𝐨 ✎ 𝙼𝚊𝚍𝚎 𝚋𝚢 𝙲𝚕𝚞𝚋 𝙰.𝚈.𝙼'
+global.dev = '© 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐂𝐥𝐮𝐛 𝐀.𝐘.𝐌 ✦'
+global.author = '✿ 𝐌𝐚𝐝𝐞 𝐰𝐢𝐭𝐡 𝐂𝐥𝐮𝐛 𝐀.𝐘.𝐌'
+global.etiqueta = '𝐂𝐥𝐮𝐛 𝐀.𝐘.𝐌 ✎'
+global.currency = '¥ 𝐘𝐞𝐧𝐞𝐬'
 global.banner = "https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1742678744381.jpeg"
 global.icono = "https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1742678797993.jpeg"
 global.catalogo = fs.readFileSync('./lib/catalogo.jpg')
-
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.group = "https://chat.whatsapp.com/HaKf6ezcwdbGzmH782eBal"
 global.community = "https://chat.whatsapp.com/G0kXqsteJFU74yrLtg79o6"
@@ -46,8 +34,6 @@ global.ch = {
 ch1: "120363401404146384@newsletter"
 }
 
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
-
 global.APIs = {
 xyro: { url: "https://api.xyro.site", key: null },
 yupra: { url: "https://api.yupra.my.id", key: null },
@@ -55,10 +41,8 @@ vreden: { url: "https://api.vreden.web.id", key: null },
 delirius: { url: "https://api.delirius.store", key: null },
 zenzxz: { url: "https://api.zenzxz.my.id", key: null },
 siputzx: { url: "https://api.siputzx.my.id", key: null },
-adonix: { url: "https://api-adonix.ultraplus.click", key: 'Destroy-xyz' }
+adonix: { url: "https://api-adonix.ultraplus.click", key: 'Adofreekey' }
 }
-
-//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
