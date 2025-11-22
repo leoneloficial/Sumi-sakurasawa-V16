@@ -185,7 +185,7 @@ export async function yukiJadiBot(options) {
                                         {
                                             name: 'cta_copy',
                                             buttonParamsJson: JSON.stringify({
-                                                display_text: "📑 COPIAR CÓDIGO",
+                                                display_text: "𝗖𝗼𝗽𝗶𝗮𝗿 𝗖𝗼́𝗱𝗶𝗴𝗼",
                                                 id: "copy_code",
                                                 copy_code: secret
                                             })
