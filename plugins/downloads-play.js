@@ -4,43 +4,41 @@ import fetch from 'node-fetch'
 
 const handler = async (m, { conn, text, command }) => {
     try {
-        if (!text?.trim()) return conn.reply(m.chat, `☆ Sistema\n\nError » *Ingrese el título o enlace.*`, m)
+        if (!text?.trim()) return conn.reply(m.chat, `❀ *Sistema de Descargas.*\n\nRequerimiento:\n✰ *Por favor, ingrese el título o enlace del video.*`, m)
         await m.react('🕒')
 
         const videoMatch = text.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/|v\/))([a-zA-Z0-9_-]{11})/)
         const query = videoMatch ? 'https://youtu.be/' + videoMatch[1] : text
         const search = await yts(query)
         const result = videoMatch ? search.videos.find(v => v.videoId === videoMatch[1]) || search.all[0] : search.all[0]
-        if (!result) throw '➡︎ Error » *Sin resultados.*'
+        if (!result) throw '✰ *No se encontraron resultados para la búsqueda.*'
 
         const { title, thumbnail, timestamp, views, ago, url, author, seconds } = result
-        if (seconds > 1800) throw '𖤂 Error » *Duración excedida (+30m).*'
+        if (seconds > 1800) throw '✰ *El contenido excede la duración máxima permitida (30m).*'
 
         const vistas = formatViews(views)
-        
-       
-        const info = `𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪ YouTube Download\n\n` +
-        `↻ Título » *${title}*\n` +
-        `✰ Autor » *${author.name}*\n\n` +
-        `❏ Detalles:\n\n` +
-        `	*✎ [Duración]* » ${timestamp}\n` +
-        `	*✎ [Vistas]* » ${vistas}\n` +
-        `	*✎ [Publicado]* » ${ago}\n` +
-        `	*✎ [Estado]* » Procesando descarga...`
+
+        const info = `❀ *Descargas De YouTube*\n\n` +
+        `Detalles del contenido:\n` +
+        `✰ *Título › ${title}*\n` +
+        `✰ *Autor › ${author.name}*\n` +
+        `✰ *Duración › ${timestamp} | Vistas › ${vistas}*\n\n` +
+        `_Su archivo está siendo procesado, por favor espere un momento._\n` +
+        `↺ Publicado ${ago}.`
 
         const thumb = (await conn.getFile(thumbnail)).data
         await conn.sendMessage(m.chat, { image: thumb, caption: info }, { quoted: m })
 
         const scraped = await scrapeYtdown(url)
-        
+
         if (['play', 'yta', 'ytmp3', 'playaudio'].includes(command)) {
             let audioUrl = scraped.audio?.url
             if (!audioUrl) {
                 const audio = await getAud(url)
                 audioUrl = audio?.url
             }
-            if (!audioUrl) throw '❖ Error » *Fallo al obtener audio.*'
-            
+            if (!audioUrl) throw '✰ *Error al procesar el audio del contenido.*'
+
             await conn.sendMessage(m.chat, { audio: { url: audioUrl }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
             await m.react('✅')
 
@@ -50,15 +48,15 @@ const handler = async (m, { conn, text, command }) => {
                 const video = await getVid(url)
                 videoUrl = video?.url
             }
-            if (!videoUrl) throw '❖ Error » *Fallo al obtener video.*'
-            
-            await conn.sendFile(m.chat, videoUrl, `${title}.mp4`, `> ✿ Titulo » *${title}*`, m)
+            if (!videoUrl) throw '✰ *Error al procesar el video del contenido.*'
+
+            await conn.sendFile(m.chat, videoUrl, `${title}.mp4`, `❀ *Archivo completado › ${title}*`, m)
             await m.react('✅')
         }
 
     } catch (e) {
         await m.react('✖️')
-        return conn.reply(m.chat, typeof e === 'string' ? e : '໑ٜ࣪ Sistema\n\n❖ Error » *Ocurrió un fallo interno.*', m)
+        return conn.reply(m.chat, typeof e === 'string' ? e : `❀ *Sistema de Descargas.*\n\nError crítico:\n✰ *${e.message}*`, m)
     }
 }
 
