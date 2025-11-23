@@ -265,6 +265,12 @@ async function startSubBot(phoneNumber, ownerUsername) {
                 let userJid = sock.authState.creds.me.jid || `${path.basename(pathYukiJadiBot)}@s.whatsapp.net`
                 console.log(chalk.bold.cyanBright(`\n❒⸺⸺⸺⸺【• SUB-BOT WEB •】⸺⸺⸺⸺❒\n│\n│ ❍ ${userName} (+${path.basename(pathYukiJadiBot)}) conectado exitosamente.\n│\n❒⸺⸺⸺【• CONECTADO •】⸺⸺⸺❒`))
                 sock.isInit = true
+
+                // Prevent duplicates by JID
+                const existingIndex = global.conns.findIndex(s => s.user?.jid === userJid)
+                if (existingIndex !== -1) {
+                    global.conns.splice(existingIndex, 1)
+                }
                 global.conns.push(sock)
 
                 if (codeResolver) {
@@ -297,6 +303,8 @@ async function startSubBot(phoneNumber, ownerUsername) {
                 const oldChats = sock.chats
                 try { sock.ws.close() } catch { }
                 sock.ev.removeAllListeners()
+                let i = global.conns.indexOf(sock)
+                if (i >= 0) global.conns.splice(i, 1)
                 sock = makeWASocket(connectionOptions, { chats: oldChats })
                 isInit = true
             }
@@ -523,7 +531,19 @@ app.get('/logout', (req, res) => {
 // Start server
 app.listen(PORT, () => {
     console.log(chalk.green(`Web Interface running on http://localhost:${PORT}`))
+    initWebSubBots().catch(console.error)
 })
+
+async function initWebSubBots() {
+    const owners = getSubbotOwners()
+    for (const [phoneNumber, ownerUsername] of Object.entries(owners)) {
+        const pathYukiJadiBot = getSessionPath(phoneNumber)
+        if (fs.existsSync(pathYukiJadiBot)) {
+             console.log(`Restoring subbot for ${phoneNumber}...`)
+             startSubBot(phoneNumber, ownerUsername).catch(e => console.error(`Failed to restore subbot ${phoneNumber}:`, e))
+        }
+    }
+}
 
 export default {
     tags: ['main'],
