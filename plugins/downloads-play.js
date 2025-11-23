@@ -1,5 +1,5 @@
 import yts from 'yt-search'
-import { scrapeYtdown } from './scrapers/yt1.js'
+import { scrapeYtdown } from '../scrapers/yt1.js'
 
 const handler = async (m, { conn, text, command }) => {
     try {
