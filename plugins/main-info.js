@@ -85,7 +85,7 @@ await m.react(count === 0 ? '✖️' : '✔️')
 conn.reply(m.chat, count === 0 ? 'ꕥ No se encontraron archivos relacionados con tu ID.' : `ꕥ Se eliminaron ${count} archivos de sesión.`, m)
 break
 }
-case 'script': case 'sc': {
+case 'scrdb': case 'cjk': {
 await m.react('🕒')
 const res = await fetch('https://api.github.com/repos/The-King-Destroy/Yuki_Suou-Bot')
 if (!res.ok) throw new Error('No se pudo obtener los datos del repositorio.')
@@ -99,8 +99,8 @@ await m.react('✖️')
 conn.reply(m.chat, `⚠︎ Se ha producido un problema.\n> Usa *${usedPrefix}report* para informarlo.\n\n${err.message}`, m)
 }}
 
-handler.help = ['suggest', 'reporte', 'invite', 'speedtest', 'fixmsg', 'script']
+handler.help = ['suggest', 'reporte', 'invite', 'speedtest', 'fixmsg']
 handler.tags = ['main']
-handler.command = ['suggest', 'sug', 'report', 'reportar', 'invite', 'speedtest', 'stest', 'fixmsg', 'ds', 'script', 'sc']
+handler.command = ['suggest', 'sug', 'report', 'reportar', 'invite', 'speedtest', 'stest', 'fixmsg', 'ds']
 
 export default handler
