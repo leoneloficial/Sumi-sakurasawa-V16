@@ -29,11 +29,15 @@ let handler = async (m, { conn, usedPrefix }) => {
 
     let rolBot = conn.user.jid === global.conn.user.jid ? 'Principal 🅥' : 'Sub-Bot 🅑'
 
-    let txt = `✿ *¡Hola! Soy ${conn.botName}* ${rolBot}\n\n`
-    txt += `✎ *Actividad:* ${uptimeStr}\n`
-    txt += `✎ *Sistema:* Multi Device\n`
-    txt += `✎ *Fecha:* ${moment().tz('America/Bogota').format('DD/MM/YYYY')}\n\n`
-    txt += `↺ *Lista de comandos disponibles:*\n`
+    let txt = `┏━━❪ *¡ʜᴏʟᴀ! ᴀǫᴜɪ ᴇʟ ᴍᴇɴᴜ ᴅᴇ* ${conn.botName} ❫━━━┓
+┃
+┃ *${rolBot}*
+┃ *📅 𝗙𝗲𝗰𝗵𝗮:* ${moment().tz('America/Bogota').format('DD/MM/YYYY')}
+┃ *⏰ 𝗔𝗰𝘁𝗶𝘃𝗶𝗱𝗮𝗱:* ${uptimeStr}
+┃ *⚙️ 𝗦𝗶𝘀𝘁𝗲𝗺𝗮:* Multi Device
+┃
+┗━━━❪ *ʙʏ ${global.etiqueta}* ❫━━━━┛
+`
 
     let orderedTags = Object.keys(menu).sort((a, b) => {
       let countA = menu[a].reduce((acc, p) => acc + (Array.isArray(p.help) ? p.help.length : 0), 0)
@@ -42,17 +46,20 @@ let handler = async (m, { conn, usedPrefix }) => {
     })
 
     for (let tag of orderedTags) {
-      txt += `\n┏━━━━━━━━━━━━━━━━━━┓\n`
-      txt += `┃ ᰔᩚ *${tag.toUpperCase()}* \n`
+      txt += `
+╭─「 *${tag.toUpperCase()}* 」
+`
       for (let plugin of menu[tag]) {
         if (!Array.isArray(plugin.help)) continue
         for (let cmd of plugin.help) {
           if (Array.isArray(cmd)) cmd = cmd[0]
           if (!cmd) continue
-          txt += `┃ *❑* ${usedPrefix}${cmd}\n`
+          txt += `│  » ${usedPrefix}${cmd}
+`
         }
       }
-      txt += `┗━━━━━━━━━━━━━━━━━━\n`
+      txt += `╰────
+`
     }
 
     let mediaMessage = null
@@ -75,7 +82,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         message: {
           interactiveMessage: {
             body: { 
-              text: "> *꒷︶꒷꒥꒷‧₊˚૮꒰˵•ᵜ•˵꒱ა‧₊˚꒷︶꒷꒥꒷*" 
+              text: ">*꒷︶꒷꒥꒷‧₊˚૮꒰˵•ᵜ•˵꒱ა‧₊˚꒷︶꒷꒥꒷*"
             },
             footer: { 
               text: txt 
