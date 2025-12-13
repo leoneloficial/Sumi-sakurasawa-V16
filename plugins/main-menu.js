@@ -255,8 +255,8 @@ let handler = async (m, { conn, args }) => {
     }
   ]
 
-  const header = `𐔌   .  ⋮ ${sections[0].title.split(' ')[1] || sections[0].title} .ᐟ  ֹ   ₊ ꒱`
-  const footer = `꒷꒦︶꒷꒦︶꒷꒦︶꒷꒦︶꒷꒦︶꒷꒦`
+  const header = `𐔌   .  ⋮ *${sections[0].title.split(' ')[1] || sections[0].title}* .ᐟ  ֹ   ₊ ꒱`
+  const footer = `*꒷꒦︶꒷꒦︶꒷꒦︶꒷꒦︶꒷꒦︶꒷꒦*`
 
   let txt = `̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮
 ︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
@@ -272,7 +272,7 @@ let handler = async (m, { conn, args }) => {
 `
 
   sections.forEach(section => {
-    txt += `𐔌   .  ⋮ ${section.title}  .ᐟ  ֹ   ₊ ꒱
+    txt += `𐔌   .  ⋮ *${section.title}* .ᐟ  ֹ   ₊ ꒱
 > ${section.emoji} Comandos de *${section.title.replace(/[🛍️📥🎮⚙️🛠️👤👥💕🔞]/g, '').trim()}*.
 ┃
 `
