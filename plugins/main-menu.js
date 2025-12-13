@@ -87,6 +87,7 @@ let handler = async (m, { conn, args }) => {
       emoji: '✿',
       commands: [
         ['#qr • #code', 'Crear un Sub-Bot con un código QR/Code.'],
+        ['#setname • #setbanner', 'Personaliza el nombre/banner de tu Sub-Bot.'],
         ['#bots • #botlist', 'Ver el número de bots activos.'],
         ['#status • #estado', 'Ver estado del bot.'],
         ['#p • #ping', 'Medir tiempo de respuesta.'],
